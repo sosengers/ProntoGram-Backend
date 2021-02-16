@@ -15,7 +15,7 @@ class Message(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, sender=None, receiver=None, body=None):  # noqa: E501
+    def __init__(self, sender=None, receiver=None, body=None, send_time=None):  # noqa: E501
         """Message - a model defined in OpenAPI
 
         :param sender: The sender of this Message.  # noqa: E501
@@ -24,22 +24,27 @@ class Message(Model):
         :type receiver: str
         :param body: The body of this Message.  # noqa: E501
         :type body: str
+        :param send_time: The send_time of this Message.  # noqa: E501
+        :type send_time: datetime
         """
         self.openapi_types = {
             'sender': str,
             'receiver': str,
-            'body': str
+            'body': str,
+            'send_time': datetime
         }
 
         self.attribute_map = {
             'sender': 'sender',
             'receiver': 'receiver',
-            'body': 'body'
+            'body': 'body',
+            'send_time': 'send_time'
         }
 
         self._sender = sender
         self._receiver = receiver
         self._body = body
+        self._send_time = send_time
 
     @classmethod
     def from_dict(cls, dikt) -> 'Message':
@@ -126,3 +131,24 @@ class Message(Model):
             raise ValueError("Invalid value for `body`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._body = body
+
+    @property
+    def send_time(self):
+        """Gets the send_time of this Message.
+
+
+        :return: The send_time of this Message.
+        :rtype: datetime
+        """
+        return self._send_time
+
+    @send_time.setter
+    def send_time(self, send_time):
+        """Sets the send_time of this Message.
+
+
+        :param send_time: The send_time of this Message.
+        :type send_time: datetime
+        """
+
+        self._send_time = send_time
