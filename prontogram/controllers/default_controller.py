@@ -40,4 +40,4 @@ def send_message(message=None):  # noqa: E501
 
     connection.close()
 
-    return 200
+    return ("", 200)
