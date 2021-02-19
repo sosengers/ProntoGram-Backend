@@ -30,7 +30,7 @@ def send_message(message=None):  # noqa: E501
     """
     channel.queue_declare(queue=message.receiver, durable=True)
 
-    message.send_time = datetime.now()
+    message.send_time = datetime.now().isoformat()
 
     channel.basic_publish(exchange='',
                           routing_key=message.receiver,
