@@ -6,7 +6,7 @@ from json import dumps
 from prontogram.models.error import Error  # noqa: E501
 from prontogram.models.message import Message  # noqa: E501
 from prontogram import util
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def send_message(message=None):  # noqa: E501
@@ -30,7 +30,7 @@ def send_message(message=None):  # noqa: E501
     """
     channel.queue_declare(queue=message.receiver, durable=True)
 
-    message.send_time = datetime.now().isoformat()
+    message.send_time = datetime.now(tz=timezone.utc).isoformat()
 
     channel.basic_publish(exchange='',
                           routing_key=message.receiver,
